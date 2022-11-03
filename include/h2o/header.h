@@ -30,7 +30,7 @@ extern "C" {
 #endif
 
 typedef struct st_h2o_header_flags_t {
-    unsigned char dont_compress : 1;
+    unsigned char dont_compress;
 } h2o_header_flags_t;
 
 /**

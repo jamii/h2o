@@ -51,11 +51,11 @@ typedef struct st_quicly_sent_packet_t {
     /**
      *
      */
-    uint8_t ack_eliciting : 1;
+    uint8_t ack_eliciting;
     /**
      * if the frames being contained are considered inflight (becomes zero when deemed lost or when PTO fires)
      */
-    uint8_t frames_in_flight : 1;
+    uint8_t frames_in_flight;
     /**
      * number of bytes in-flight for the packet, from the context of CC (becomes zero when deemed lost, but not when PTO fires)
      */

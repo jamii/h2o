@@ -54,11 +54,11 @@ typedef struct st_quicly_cid_plaintext_t {
     /**
      * path ID of the connection; we issue up to 255 CIDs per connection (see QUICLY_MAX_PATH_ID)
      */
-    uint32_t path_id : 8;
+    uint32_t path_id;
     /**
      * for intra-node routing
      */
-    uint32_t thread_id : 24;
+    uint32_t thread_id;
     /**
      * for inter-node routing; available only when using a 16-byte cipher to encrypt CIDs, otherwise set to zero.
      */

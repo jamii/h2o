@@ -64,7 +64,7 @@ typedef struct st_h2o_httpclient_properties_t {
     /**
      * defaults to false
      */
-    unsigned prefer_pipe_reader : 1;
+    unsigned prefer_pipe_reader;
 } h2o_httpclient_properties_t;
 
 typedef struct st_h2o_httpclient_pipe_reader_t h2o_httpclient_pipe_reader_t;
@@ -153,8 +153,8 @@ typedef struct st_h2o_httpclient_ctx_t {
     uint64_t first_byte_timeout;
     uint64_t keepalive_timeout; /* only used for http2 for now */
     size_t max_buffer_size;
-    unsigned tunnel_enabled : 1;
-    unsigned force_cleartext_http2 : 1;
+    unsigned tunnel_enabled;
+    unsigned force_cleartext_http2;
 
     struct st_h2o_httpclient_protocol_selector_t {
         h2o_httpclient_protocol_ratio_t ratio;

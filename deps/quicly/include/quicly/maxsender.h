@@ -47,12 +47,12 @@ typedef struct st_quicly_maxsender_t {
     /**
      *
      */
-    unsigned force_send : 1;
+    unsigned force_send;
 } quicly_maxsender_t;
 
 typedef struct st_quicly_maxsender_sent_t {
-    uint64_t inflight : 1;
-    uint64_t value : 63;
+    uint64_t inflight;
+    uint64_t value;
 } quicly_maxsender_sent_t;
 
 static void quicly_maxsender_init(quicly_maxsender_t *m, int64_t initial_value);

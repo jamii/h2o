@@ -31,13 +31,13 @@ extern "C" {
 
 typedef struct st_h2o_token_flags_t {
     char http2_static_table_name_index; /* non-zero if any */
-    unsigned char proxy_should_drop_for_req : 1;
-    unsigned char proxy_should_drop_for_res : 1;
-    unsigned char is_init_header_special : 1;
-    unsigned char is_hpack_special : 1;
-    unsigned char copy_for_push_request : 1;
-    unsigned char dont_compress : 1; /* consult `h2o_header_t:dont_compress` as well */
-    unsigned char likely_to_repeat : 1;
+    unsigned char proxy_should_drop_for_req;
+    unsigned char proxy_should_drop_for_res;
+    unsigned char is_init_header_special;
+    unsigned char is_hpack_special;
+    unsigned char copy_for_push_request;
+    unsigned char dont_compress; /* consult `h2o_header_t:dont_compress` as well */
+    unsigned char likely_to_repeat;
 } h2o_token_flags_t;
 
 /**

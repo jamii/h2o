@@ -433,7 +433,7 @@ typedef const struct st_ptls_aead_algorithm_t {
     /**
      * if encrypted bytes are going to be written using non-temporal store instructions (i.e., skip cache)
      */
-    unsigned non_temporal : 1;
+    unsigned non_temporal;
     /**
      * log2(alignment) being required
      */
@@ -619,11 +619,11 @@ typedef struct st_ptls_on_client_hello_parameters_t {
     /**
      * if ESNI was used
      */
-    unsigned esni : 1;
+    unsigned esni;
     /**
      * set to 1 if ClientHello is too old (or too new) to be handled by picotls
      */
-    unsigned incompatible_version : 1;
+    unsigned incompatible_version;
 } ptls_on_client_hello_parameters_t;
 
 /**
@@ -779,25 +779,25 @@ struct st_ptls_context_t {
     /**
      * if set, psk handshakes use (ec)dhe
      */
-    unsigned require_dhe_on_psk : 1;
+    unsigned require_dhe_on_psk;
     /**
      * if exporter master secrets should be recorded
      */
-    unsigned use_exporter : 1;
+    unsigned use_exporter;
     /**
      * if ChangeCipherSpec record should be sent during handshake. If the client sends CCS, the server sends one in response
      * regardless of the value of this flag. See RFC 8446 Appendix D.3.
      */
-    unsigned send_change_cipher_spec : 1;
+    unsigned send_change_cipher_spec;
     /**
      * if set, the server requests client certificates
      * to authenticate the client.
      */
-    unsigned require_client_authentication : 1;
+    unsigned require_client_authentication;
     /**
      * if set, EOED will not be emitted or accepted
      */
-    unsigned omit_end_of_early_data : 1;
+    unsigned omit_end_of_early_data;
     /**
      * This option turns on support for Raw Public Keys (RFC 7250).
      *
@@ -810,11 +810,11 @@ struct st_ptls_context_t {
      * callback is being called. Therefore, applications can support both X.509 and raw public keys by swapping `ptls_context_t` to
      * the correct one when that callback is being called (like handling swapping the contexts based on the value of SNI).
      */
-    unsigned use_raw_public_keys : 1;
+    unsigned use_raw_public_keys;
     /**
      * boolean indicating if the cipher-suite should be chosen based on server's preference
      */
-    unsigned server_cipher_preference : 1;
+    unsigned server_cipher_preference;
     /**
      *
      */
@@ -901,7 +901,7 @@ typedef struct st_ptls_handshake_properties_t {
             /**
              * negotiate the key exchange method before sending key_share
              */
-            unsigned negotiate_before_key_exchange : 1;
+            unsigned negotiate_before_key_exchange;
             /**
              * ESNIKeys (the value of the TXT record, after being base64-"decoded")
              */
@@ -932,11 +932,11 @@ typedef struct st_ptls_handshake_properties_t {
             /**
              * if HRR should always be sent
              */
-            unsigned enforce_retry : 1;
+            unsigned enforce_retry;
             /**
              * if retry should be stateless (cookie.key MUST be set when this option is used)
              */
-            unsigned retry_uses_cookie : 1;
+            unsigned retry_uses_cookie;
         } server;
     };
     /**
@@ -1305,8 +1305,8 @@ uint64_t ptls_decode_quicint(const uint8_t **src, const uint8_t *end);
  * User API is exposed only when logging is supported by the platform.
  */
 typedef struct st_ptls_log_t {
-    unsigned is_active : 1;
-    unsigned include_appdata : 1;
+    unsigned is_active;
+    unsigned include_appdata;
 } ptls_log_t;
 
 #if PTLS_HAVE_LOG

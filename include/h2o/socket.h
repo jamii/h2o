@@ -182,7 +182,7 @@ struct st_h2o_socket_t {
     /**
      * boolean flag to indicate if sock is NOT being traced
      */
-    unsigned _skip_tracing : 1;
+    unsigned _skip_tracing;
     struct {
         void (*cb)(void *data);
         void *data;
@@ -204,7 +204,7 @@ struct st_h2o_socket_t {
     } _write_buf;
     struct {
         uint8_t state; /* one of H2O_SOCKET_LATENCY_STATE_* */
-        uint8_t notsent_is_minimized : 1;
+        uint8_t notsent_is_minimized;
         size_t suggested_tls_payload_size; /* suggested TLS record payload size, or SIZE_MAX when no need to restrict */
         size_t suggested_write_size;       /* SIZE_MAX if no need to optimize for latency */
     } _latency_optimization;

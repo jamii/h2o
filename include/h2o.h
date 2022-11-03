@@ -131,7 +131,7 @@ typedef struct st_h2o_handler_t {
      * The request handler can delay replacing the callback to a later moment. In such case, the handler can determine if
      * `req->entity` already contains a complete request body by checking if `req->proceed_req` is NULL.
      */
-    unsigned supports_request_streaming : 1;
+    unsigned supports_request_streaming;
 } h2o_handler_t;
 
 /**
@@ -240,7 +240,7 @@ struct st_h2o_pathconf_t {
         /**
          * if request-level errors should be emitted to stderr
          */
-        unsigned emit_request_errors : 1;
+        unsigned emit_request_errors;
     } error_log;
 };
 
@@ -292,15 +292,15 @@ struct st_h2o_hostconf_t {
          * whether if blocking assets being pulled should be given highest priority in case of clients that do not implement
          * dependency-based prioritization
          */
-        unsigned reprioritize_blocking_assets : 1;
+        unsigned reprioritize_blocking_assets;
         /**
          * if server push should be used
          */
-        unsigned push_preload : 1;
+        unsigned push_preload;
         /**
          * if cross origin pushes should be authorized
          */
-        unsigned allow_cross_origin_push : 1;
+        unsigned allow_cross_origin_push;
         /**
          * casper settings
          */
@@ -453,11 +453,11 @@ struct st_h2o_globalconf_t {
         /**
          * a boolean indicating if the delayed ack extension should be used (default true)
          */
-        uint8_t allow_delayed_ack : 1;
+        uint8_t allow_delayed_ack;
         /**
          * a boolean indicating if UDP GSO should be used when possible
          */
-        uint8_t use_gso : 1;
+        uint8_t use_gso;
     } http3;
 
     struct {
@@ -480,23 +480,23 @@ struct st_h2o_globalconf_t {
         /**
          * a boolean flag if set to true, instructs the proxy to preserve the x-forwarded-proto header passed by the client
          */
-        unsigned preserve_x_forwarded_proto : 1;
+        unsigned preserve_x_forwarded_proto;
         /**
          * a boolean flag if set to true, instructs the proxy to preserve the server header passed by the origin
          */
-        unsigned preserve_server_header : 1;
+        unsigned preserve_server_header;
         /**
          * a boolean flag if set to true, instructs the proxy to emit x-forwarded-proto and x-forwarded-for headers
          */
-        unsigned emit_x_forwarded_headers : 1;
+        unsigned emit_x_forwarded_headers;
         /**
          * a boolean flag if set to true, instructs the proxy to emit a via header
          */
-        unsigned emit_via_header : 1;
+        unsigned emit_via_header;
         /**
          * a boolean flag if set to true, instructs the proxy to emit a date header, if it's missing from the upstream response
          */
-        unsigned emit_missing_date_header : 1;
+        unsigned emit_missing_date_header;
         /**
          * maximum size to buffer for the response
          */
@@ -1073,15 +1073,15 @@ typedef struct st_h2o_req_overrides_t {
     /**
      * whether if the PROXY header should be sent
      */
-    unsigned use_proxy_protocol : 1;
+    unsigned use_proxy_protocol;
     /**
      * whether the proxied request should preserve host
      */
-    unsigned proxy_preserve_host : 1;
+    unsigned proxy_preserve_host;
     /**
      * a boolean flag if set to true, instructs the proxy to close the frontend h1 connection on behalf of the upstream
      */
-    unsigned forward_close_connection : 1;
+    unsigned forward_close_connection;
     /**
      * headers rewrite commands to be used when sending requests to upstream (or NULL)
      */
@@ -1309,29 +1309,29 @@ struct st_h2o_req_t {
      * whether or not the connection is persistent.
      * Applications should set this flag to zero in case the connection cannot be kept keep-alive (due to an error etc.)
      */
-    unsigned char http1_is_persistent : 1;
+    unsigned char http1_is_persistent;
     /**
      * whether if the response has been delegated (i.e. reproxied).
      * For delegated responses, redirect responses would be handled internally.
      */
-    unsigned char res_is_delegated : 1;
+    unsigned char res_is_delegated;
     /**
      * set by the generator if the protocol handler should replay the request upon seeing 425
      */
-    unsigned char reprocess_if_too_early : 1;
+    unsigned char reprocess_if_too_early;
     /**
      * set by the prxy handler if the http2 upstream refused the stream so the client can retry the request
      */
-    unsigned char upstream_refused : 1;
+    unsigned char upstream_refused;
     /**
      * if h2o_process_request has been called
      */
-    unsigned char process_called : 1;
+    unsigned char process_called;
     /**
      * Indicates if requested to serve something other than HTTP (e.g., websocket, upgrade, CONNECT, ...) using the streaming API.
      * When the protocol handler returns a successful response, filters are skipped.
      */
-    unsigned char is_tunnel_req : 1;
+    unsigned char is_tunnel_req;
 
     /**
      * whether if the response should include server-timing header. Logical OR of H2O_SEND_SERVER_TIMING_*
@@ -2172,19 +2172,19 @@ typedef struct st_h2o_proxy_config_vars_t {
         uint64_t name_resolution_delay;
         uint64_t connection_attempt_delay;
     } happy_eyeballs;
-    unsigned preserve_host : 1;
-    unsigned use_proxy_protocol : 1;
-    unsigned tunnel_enabled : 1;
-    unsigned connect_proxy_status_enabled : 1;
+    unsigned preserve_host;
+    unsigned use_proxy_protocol;
+    unsigned tunnel_enabled;
+    unsigned connect_proxy_status_enabled;
     /**
      * a boolean flag if set to true, instructs the proxy to close the frontend h1 connection on behalf of the upstream
      */
-    unsigned forward_close_connection : 1;
+    unsigned forward_close_connection;
     h2o_headers_command_t *headers_cmds;
     size_t max_buffer_size;
     struct {
         uint32_t max_concurrent_streams;
-        unsigned force_cleartext : 1;
+        unsigned force_cleartext;
     } http2;
     h2o_httpclient_protocol_ratio_t protocol_ratio;
 } h2o_proxy_config_vars_t;
